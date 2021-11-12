@@ -26,8 +26,8 @@ public class Main {
         int n = board.length, m = board[0].length;
         int[][] dir= {{0, -1}, {-1, 0}, {-1, -1}, {-1, 1}};
         for(int[] d : dir){
-            int r = sr + d[0];
-            int c = sc + d[1];
+            int r = sr;
+            int c = sc;
             while(r >= 0 && c >= 0 && r < n && c < m){
                 if(board[r][c]){
                     return false;
