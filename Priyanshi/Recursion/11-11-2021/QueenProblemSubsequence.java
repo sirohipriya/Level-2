@@ -111,3 +111,40 @@ public class Main {
 
 
 
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    public static int queen2DPermutation_sub(boolean board[][], int tq, int row, int col, String ans) {
+		if(tq==0) {
+			System.out.println(ans);
+			return 1;
+		}
+		
+		if(col==board[0].length) {
+			row++;
+			col=0;
+		}
+		
+		if(row==board.length)	return 0;
+
+		int count=0;
+		if(!board[row][col]) {
+			board[row][col]=true;
+			count+=queen2DPermutation_sub(board, tq-1, 0, 0, ans+"("+row+", "+col+")");
+			board[row][col]=false;
+		}
+		
+		count+=queen2DPermutation_sub(board, tq, row, col+1, ans);
+		return count;
+	}
+    public static void main(String[] args){
+        int n = 4, tnq = 4;
+        boolean[][] board = new boolean[n][n];
+
+        System.out.println(queenCombination2D_sub(board, 0, tnq, ""));
+    }
+}
+
+
+    
