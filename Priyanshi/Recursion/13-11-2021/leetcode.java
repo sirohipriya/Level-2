@@ -112,23 +112,41 @@ public class Solution {
 class Solution {
     public int[] countBits(int n) {
         int[] ans = new int[n + 1];
-        for(int i = 0; i <= n; i++){
-            ans[i] = bits(i);
+        for(int i = 1; i <= n; i++){
+            ans[i] = ans[(i & (i-1))] + 1;
             
         }
         return ans;
-    }
-    public int bits(int n) {
-        int count = 0;
-        while(n != 0){
-            n = (n & (n-1));
-            count++;
-        }
-        
-        return count;
     }
 }
 
 
 
-//====================================================================================
+//====================================================================================260. Single Numer=======================================================================
+
+
+
+class Solution {
+    public int[] singleNumber(int[] nums) {
+        int xor = 0;
+        for(int ele : nums) xor ^= ele;
+        
+        int mask = (xor & (-xor));
+        
+        int[] ans = new int[2];
+        int A = 0;
+        int B = 0;
+        for(int ele : nums){
+            if((ele & mask) == 0) A ^= ele;
+            
+            else B ^= ele;
+        }
+        ans[0] = A;
+        ans[1] = B;
+        
+        return ans;
+    }
+}
+
+
+
